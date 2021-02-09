@@ -2,7 +2,15 @@
 
 let typedText = document.querySelector(".typewritten");
 let typed;
-let somethingHappened;
+
+let nthletter = 0;
+let typingSpeed = 200;
+
+let charOneSound = document.getElementById("typekey1");
+let charTwoSound = document.getElementById("typekey2");
+let spaceSound = document.getElementById("typespace");
+let lastKeySound = document.getElementById("typelast");
+let returnSound = document.getElementById("typereturn");
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -14,21 +22,24 @@ function init() {
     // Clear fetched text
     typedText.innerHTML = "";
     //Start Loop function
-    myLoop(typed);
+    typewriterLoop(typed);
 }
 
-function myLoop() {
+function typewriterLoop() {
     console.log(typed);
+    console.log("This letter is number (" + nthletter + ")");
 
-    // Show the N'th letter
+    if (nthletter < typed.length) {
+        console.log("The length of string is = " + typed.length);
 
-    // - Set textContent to substring of 0 to N
+        // - Set textContent to substring of 0 to N
+        typedText.textContent += typed.charAt(nthletter);
+        // Imcrement N (++) 
+        nthletter++;
 
-    // Imcrement N (++) 
 
-    // Wait before calling loop again
 
-    if (somethingHappened) {
-        setTimeout(myLoop, 500);
+        // Wait before calling loop again
+        setTimeout(typewriterLoop, typingSpeed);
     }
 }
