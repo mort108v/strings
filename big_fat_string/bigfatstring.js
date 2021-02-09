@@ -137,10 +137,29 @@ function makeThirdUpperCase() {
 function mkUpperCaseAfterSpaceAndHyphen() {
     console.log("mkUpperCaseAfterSpaceAndHyphen");
 
-    // const regexp = 
-    // const letterSwap = nameInput.matcAll(" " + 1, "-" + 1).toUpperCase();
-    // stringResult = letterSwap;
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/matchAll
+    nameInput.toLowerCase();
+    const firstSpace = nameInput.indexOf(" ");
+
+    const nameBeforePart = nameInput.substring(0, firstSpace + 1);
+    const character = nameInput[firstSpace + 1];
+    const nameAfter = nameInput.substring(firstSpace + 2);
+
+    const letterCapitalized = nameBeforePart +
+        character.toUpperCase() +
+        nameAfter;
+
+    const firstHyphen = letterCapitalized.indexOf("-");
+
+    const hyphenBefore = letterCapitalized.substring(0, firstHyphen + 1);
+    const hyphenCharacter = letterCapitalized[firstHyphen + 1];
+    const hyphenAfter = letterCapitalized.substring(firstHyphen + 2);
+
+    const hyphenCapitalized = hyphenBefore +
+        hyphenCharacter.toUpperCase() +
+        hyphenAfter;
+
+    stringResult = hyphenCapitalized;
+
     submitResult();
 }
 
