@@ -4,13 +4,13 @@ let typedText = document.querySelector(".typewritten");
 let typed;
 
 let nthletter = 0;
-let typingSpeed = 200;
+let typingSpeed = 500;
 
-let charOneSound = document.getElementById("typekey1");
-let charTwoSound = document.getElementById("typekey2");
-let spaceSound = document.getElementById("typespace");
-let lastKeySound = document.getElementById("typelast");
-let returnSound = document.getElementById("typereturn");
+const charOneSound = document.getElementById("typekey1");
+const charTwoSound = document.getElementById("typekey2");
+const spaceSound = document.getElementById("typespace");
+const lastKeySound = document.getElementById("typelast");
+const returnSound = document.getElementById("typereturn");
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -36,10 +36,37 @@ function typewriterLoop() {
         typedText.textContent += typed.charAt(nthletter);
         // Imcrement N (++) 
         nthletter++;
+        console.log(nthletter);
 
-
+        playSound(nthletter);
 
         // Wait before calling loop again
         setTimeout(typewriterLoop, typingSpeed);
+    }
+}
+
+
+function playSound() {
+    console.log("PlaySound");
+
+    let spaceBar = typed.indexOf(' ');
+    let lastLetter = typed.length;
+    console.log(lastLetter);
+
+    if (nthletter === lastLetter) {
+        lastKeySound.play();
+        setTimeout(typingSpeed);
+        returnSound.play();
+
+    } else if (nthletter == spaceBar) {
+        spaceSound.play();
+
+    } else {
+        let play = Math.random();
+        if (play < .5) {
+            charOneSound.play();
+        } else {
+            charTwoSound.play();
+        }
     }
 }
