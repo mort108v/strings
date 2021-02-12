@@ -4,6 +4,7 @@
     display: flex;
     gap: 2px;
     height: 200px;
+    background-color: yellow;
 }
 
 .bar {
@@ -12,6 +13,7 @@
     border: solid 2px cadetblue;
     background-color: aqua;
     align-self: flex-end;
+    text-align: center;
 }
 
 h2 {

@@ -7,7 +7,7 @@ let myBarArray = Array.from({ length: 40 }, (_, i) => { return { height: getMyNu
 
 function getMyNumberOfCustomers() {
     console.log("Get number of customers")
-    return Math.floor(Math.random() * 120);
+    return Math.floor(Math.random() * 195);
 }
 
 addEventListener("load", startBarchart);
@@ -45,6 +45,7 @@ function changeHeightOfBars() {
     for (let i = 0; i < bars.children.length; i++) {
 
         bars.children[i].style.height = myBarArray[i].height + "px";
+        bars.children[i].innerHTML = myBarArray[i].height;
         bars.children[i].style.backgroundColor = myBarArray[i].randomColor;
         // Input random colors
     }
