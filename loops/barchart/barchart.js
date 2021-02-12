@@ -33,7 +33,6 @@ function createBarElements() {
         const bar = document.createElement("div");
         const barBox = bars.appendChild(bar);
         barBox.classList.add("bar");
-
     }
     // myBarArray = barKeep;
     console.log(myBarArray);
