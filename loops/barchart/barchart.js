@@ -3,7 +3,7 @@
 // const bar = document.getElementsByClassName(".bar");
 const bars = document.getElementById("bars");
 
-let myBarArray = Array.from({ length: 40 }, (_, i) => getMyNumberOfCustomers());
+let myBarArray = Array.from({ length: 40 }, (_, i) => { return { height: getMyNumberOfCustomers(), randomColor: randomBackgroundColor() } });
 
 function getMyNumberOfCustomers() {
     console.log("Get number of customers")
@@ -20,9 +20,9 @@ function startBarchart() {
     // shift data
     setInterval(() => {
         shiftBarsInArray();
+        // change height function
         changeHeightOfBars();
     }, 500);
-    // change height function ln13
 }
 
 function createBarElements() {
@@ -44,8 +44,9 @@ function changeHeightOfBars() {
 
     for (let i = 0; i < bars.children.length; i++) {
 
-        bars.children[i].style.height = myBarArray[i] + "px";
-        // console.log(getMyNumberOfCustomers());
+        bars.children[i].style.height = myBarArray[i].height + "px";
+        bars.children[i].style.backgroundColor = myBarArray[i].randomColor;
+        // Input random colors
     }
 }
 
@@ -56,4 +57,13 @@ function shiftBarsInArray() {
     myBarArray.push(firstArrayElement);
 
     // setTimeout(shiftBarsInArray, 500);
+}
+
+function randomBackgroundColor() {
+    console.log("randomBackgroundColor");
+
+    const x = Math.floor(Math.random() * 256);
+    const y = Math.floor(Math.random() * 256);
+    const z = Math.floor(Math.random() * 256);
+    return `rgba(${x},${y},${z}, 0.65)`;
 }
