@@ -47,6 +47,7 @@ function prepareObjects(jsonData) {
             const studentMiddlename = studentFullNameSplit[1];
             student.middlename = studentMiddlename.charAt(0).toUpperCase() + studentMiddlename.substring(1);
         }
+
         if (studentFullNameSplit.length > 2) {
             // Student Last Name
             const studentLastname = studentFullNameSplit[2];
@@ -55,6 +56,7 @@ function prepareObjects(jsonData) {
             const studentLastnameTwo = studentFullNameSplit[1];
             student.lastname = studentLastnameTwo.charAt(0).toUpperCase() + studentLastnameTwo.substring(1);
         }
+
         // Student Nickname
         if (studentFullName.includes(`"`)) {
             student.middlename = "";
@@ -63,15 +65,16 @@ function prepareObjects(jsonData) {
         }
 
         // Student Gender
-
-        const studentGender = jsonObject.gender.substring().toLowerCase();
+        const studentGender = jsonObject.gender.substring().toLowerCase().trim();
         student.gender = studentGender.charAt(0).toUpperCase() + studentGender.substring(1);
 
         // Student House
-
+        const studentHouse = jsonObject.house.substring().toLowerCase().trim();
+        student.house = studentHouse.charAt(0).toUpperCase() + studentHouse.substring(1);
 
         // Student Image
-
+        const studentImageURL = "images/";
+        student.image = studentImageURL + student.lastname.toLowerCase() + "_" + student.firstname.charAt(0).toLowerCase() + ".png";
 
 
         allStudents.push(student);

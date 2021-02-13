@@ -10,3 +10,7 @@ th {
     padding: 20px;
     font-size: large;
 }
+
+tbody {
+    text-align: center;
+}
