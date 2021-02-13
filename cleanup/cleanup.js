@@ -38,11 +38,6 @@ function prepareObjects(jsonData) {
         const studentFullName = jsonObject.fullname.substring(0).toLowerCase().trim();
         const studentFullNameSplit = studentFullName.split(" ");
 
-        // Indexing "Quotes" and Hyphens
-        const quote = studentFullName.indexOf(`"`);
-        const hyphen = studentFullName.indexOf("-");
-
-
         // Student First Name
         const studentFirstname = studentFullNameSplit[0];
         student.firstname = studentFirstname.charAt(0).toUpperCase() + studentFirstname.substring(1);
@@ -72,45 +67,16 @@ function prepareObjects(jsonData) {
         const studentGender = jsonObject.gender.substring().toLowerCase();
         student.gender = studentGender.charAt(0).toUpperCase() + studentGender.substring(1);
 
-        // student.gender = studentGenderFirst.substring(0, 1).toUpperCase();
         // Student House
 
 
-        // Student Image File
-        // const studentHouse = jsonObject.house.substring().toLowerCase();
-        // const studentImageURL = "images/"
-
-        // const nameLastPart = firstName.substring(1);
-        // student.firstname = studentFirstLetter + studenFirstname;
-        // student.middlename = studentFullName.substring(firstSpace, lastSpace);
-        // student.lastname = studentFullName.substring(lastSpace + 1);
-        // student.nickname = jsonObject
+        // Student Image
 
 
-        // student.house = studentHouse.substring(0, 1).toUpperCase();
-        // student.image = studentImageURL + lastname.toLowerCase() + "_" + firstname.substring(0, 1).toLowerCase() + ".png";
-
-
-        // const firstSpace = studentFullName.indexOf(" ");
-        // const lastSpace = studentFullName.lastIndexOf(" ");
-
-        // student.name = studentFullName.substring(0, firstSpace);
-        // student.desc = studentFullName.substring(firstSpace, lastSpace);
-        // student.type = studentFullName.substring(lastSpace + 1);
-        // student.age = jsonObject.age;
-
-        // const studentData = jsonObject.fullname.split(" ");
-        // student.name = studentData[0];
-        // student.desc = studentData[2];
-        // student.type = studentData[3];
-        // student.age = jsonObject.age;
 
         allStudents.push(student);
         console.log(allStudents);
-        //         const name = jsonObject.fullname;
-        // const type = jsonObject.fullname;
-        // const desc = jsonObject.fullname;
-        // const age = jsonObject.age;
+
     });
 
     displayList();
