@@ -61,7 +61,7 @@ function prepareObjects(jsonData) {
         if (studentFullName.includes(`"`)) {
             student.middlename = "";
             const studentNickname = studentFullNameSplit[1];
-            student.nickname = `"` + studentNickname.charAt(1).toUpperCase() + studentNickname.substring(1);
+            student.nickname = `"` + studentNickname.charAt(1).toUpperCase() + studentNickname.substring(2);
         }
 
         // Student Gender
@@ -104,7 +104,7 @@ function displayStudent(student) {
     clone.querySelector("[data-field=nickname]").textContent = student.nickname;
     clone.querySelector("[data-field=gender]").textContent = student.gender;
     clone.querySelector("[data-field=house]").textContent = student.house;
-    clone.querySelector("[data-field=image]").textContent = student.image;
+    clone.querySelector(".student-photo").src = student.image;
 
     // append clone to list
     document.querySelector("#list tbody").appendChild(clone);
