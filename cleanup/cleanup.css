@@ -1,0 +1,12 @@
+h1 {
+    text-align: center;
+}
+
+#list {
+    margin: 0 auto;
+}
+
+th {
+    padding: 20px;
+    font-size: large;
+}

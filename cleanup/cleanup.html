@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="cleanup.css">
+    <title>Hogwarts Cleanup</title>
+</head>
+
+<body>
+    <h1>Students List</h1>
+
+    <table id="list">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Middlename</th>
+                <th>Lastname</th>
+                <th>Nickname</th>
+                <th>Gender</th>
+                <th>House</th>
+                <th>Image file</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- animal template will be copied and inserted here -->
+
+        </tbody>
+    </table>
+
+    <template id="student">
+      <tr>
+        <td data-field="firstname">FIRSTNAME</td>
+        <td data-field="middlename">MIDDLENAME</td>
+        <td data-field="lastname">LASTNAME</td>
+        <td data-field="nickname">NICKNAME</td>
+        <td data-field="gender">GENDER</td>
+        <td data-field="house">HOUSE</td>
+        <td data-field="image">IMAGE</td>
+      </tr>
+    </template>
+
+    <script src="cleanup.js"></script>
+</body>
+
+</html>
