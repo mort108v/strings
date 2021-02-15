@@ -3,10 +3,36 @@
 document.querySelector(".selector").addEventListener("change", fetchColor);
 
 function fetchColor() {
-    console.log("Fetching Color")
 
-    let currentColor = window.getComputedStyle(color, null).getPropertyValue('background-color');
-    console.log(currentColor);
+    const color = element.style.color;
+    console.log(color);
+    // this.output = $('#output');
+    // this.result = $('#result');
+    // let self = this,
+    //     initialColor = this.result.css('background');
+    // let colorPicker = $('#color-picker').spectrum({
+    //     chooseText: 'ok',
+    //     color: initialColor,
+    //     move: function(col) { self.onMove(col.rgb2hex()); },
+    //     change: function(col) { self.onChange(col.rgb2hex()); },
+    //     hide: function(col) {
+    //         self.onHide(col.toHexString());
+    //     },
+    //     onMove: function(color) {
+    //         this.result.css('background', color);
+    //     },
+
+    //     onChange: function(color) {
+    //         this.result.css('background', color);
+    //         this.broadcast(color);
+    //     },
+
+    //     onHide: function(color) {
+    //         this.result.css('background', color);
+    //         this.broadcast(color);
+    //     }
+    // });
+    // this.broadcast(colorPicker.spectrum('get').rgb2hex());
 }
 
 function rgb2hex(color) {

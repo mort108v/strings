@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mycolorpicker.css">
     <title>My color Picker</title>
 </head>
 
@@ -12,7 +13,18 @@
     <section id="colorpicker">
         <h2>My color Picker</h2>
         <div id="picker">
-            <div class="color-top">
+            <div class="container">
+                <div class="output" id="output"></div>
+
+                <div class="result-wrp">
+                    <input type="color" id="color-picker" />
+                    <span class="result" id="result"></span>
+                </div>
+                <div class="color-bottom">
+                    HEX: <span class="hex"></span><br /> RGB: <span class="rgb"></span><br />HSL: <span class="hsl"></span>
+                </div>
+            </div>
+            <!-- <div class="color-top">
                 <div class="select"></div>
                 <input type="color" class="selector" />
 
@@ -20,7 +32,7 @@
             <div class="color-body"></div>
             <div class="color-bottom">
                 HEX: <span class="hex"></span><br /> RGB: <span class="rgb"></span><br />HSL: <span class="hsl"></span>
-            </div>
+            </div> -->
         </div>
     </section>
     <script src="mycolorpicker.js"></script>
