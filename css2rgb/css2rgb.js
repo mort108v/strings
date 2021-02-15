@@ -1,12 +1,42 @@
 "use strict";
 
-function cleanCSS(cssColor) {
-    const parStart = cssColor.indexOf("(");
-    const parEnd = cssColor.indexOf(")");
-    const rgbColorString = cssColor.substring(parStart + 1, parEnd);
-    console.log(rgbColorString);
+function cssToRGB(rgbFromCSS) {
+    const parStart = rgbFromCSS.indexOf("(");
+    const parEnd = rgbFromCSS.indexOf(")");
+
+    const numbersOnly = rgbFromCSS.substring(parStart + 1, parEnd);
+    // console.log(numbersOnly);
+
+    const firstSpace = numbersOnly.indexOf(" ");
+    const secondSpace = numbersOnly.lastIndexOf(" ");
+
+    const firstNumber = numbersOnly.substring(0, firstSpace - 1);
+    const r = Number(parseInt(firstNumber)).toString();
+
+    const secondNumber = numbersOnly.substring(firstSpace + 1, secondSpace + 1);
+    const g = Number(parseInt(secondNumber)).toString();
+
+    const thirdNumber = numbersOnly.substring(secondSpace);
+    const b = Number(parseInt(thirdNumber)).toString();
+
+    // const rgbColorString = r + " " + g + " " + b;
+    console.log(r, g, b);
 }
-console.log(cleanCSS("rgb(192, 13, 1)"));
+console.log(cssToRGB("rgb(2, 14, 1)"));
+console.log(cssToRGB("rgb(12, 213, 211)"));
+console.log(cssToRGB("rgb(192, 1, 12)"));
+
+
+// function cleanCSS(cssColor) {
+//     const parStart = cssColor.indexOf("(");
+//     const parEnd = cssColor.indexOf(")");
+//     const rgbColorString = cssColor.substring(parStart + 1, parEnd);
+//     console.log(rgbColorString);
+// }
+// console.log(cleanCSS("rgb(192, 13, 1)"));
+
+
+
 // css2rgb(rgbColorString);
 // }
 // function css2rgb(r, g, b) {
