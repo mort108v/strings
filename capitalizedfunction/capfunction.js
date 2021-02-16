@@ -7,35 +7,30 @@ function capitalized(str) {
     // const firstCapped = nameToLower.substring(0, 1).toUpperCase();
     // const restOfName = nameToLower.substring(1);
     // const nameConcated = firstCapped + restOfName;
-
     return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
 }
 
-fullName("Potter", "Harry", "James");
+let studentName = "pOtter haRRy JamES";
 
 let firstName = "moRten";
 let middleName = "bO";
 let lastName = "sixHoej";
 
-console.log(capitalized(firstName, middleName));
-console.log(capitalized(middleName));
-console.log(capitalized(lastName));
+// console.log(capitalized(firstName));
+// console.log(capitalized(middleName));
+// console.log(capitalized(lastName));
 
 function fullName(lastName, firstName, middleName) {
+    // console.log(firstName, lastName, middleName);
+    // const firstSpace = nameStr.indexOf(" ");
+    // const lastSpace = nameStr.lastIndexOf(" ");
+    // let first = nameStr.substring(0, firstSpace);
+    // let middle = nameStr.substring(firstSpace + 1, lastSpace);
+    // let last = nameStr.substring(lastSpace + 1);
 
-
-    const result = firstName + " " + middleName + " " + lastName;
-
-    // const firstSpace = fullName.indexOf(" ");
-    // const lastSpace = fullName.lastIndexOf(" ");
-
-    // const first = firstName.substring(0, firstSpace);
-    // const middle = middleName.substring(firstSpace + 1, lastSpace);
-    // const last = lastName.substring(lastSpace + 1);
-
-
-    console.log(result);
+    return { firstName, middleName, lastName };
 }
+console.log(fullName(capitalized(studentName)));
 // const firstSpace = fullName.indexOf(" ");
 // const lastSpace = fullName.lastIndexOf(" ");
 

@@ -1,38 +1,59 @@
 "use strict";
 
-document.querySelector(".selector").addEventListener("change", fetchColor);
+const colorPicker = document.getElementById("color-picker");
+const colorResultDIV = document.getElementById("result");
+
+addEventListener("DOMContentLoaded", initColorPicker);
+
+function initColorPicker() {
+    console.log("Colorpicker Startet");
+
+    // Init Return color from picker
+    colorPicker.addEventListener("change", () => {
+        console.log("Color Changed");
+
+        fetchColor();
+        if (fetchColor(result) != colorResultDIV.value) {
+            sendColorToResult(fetchColor(result));
+        }
+    })
+
+    // Init hexToRGB from colorresult
+    hexToRGB(fetchColor(result));
+
+    // init rgb to HSL
+    rgbToHSL(hexToRGB(r, g, b))
+        // Init Send HEX, RGB and HSL numbers to respective divs
+}
+
 
 function fetchColor() {
+    console.log("Fetching Color from Selector");
 
-    const color = element.style.color;
-    console.log(color);
-    // this.output = $('#output');
-    // this.result = $('#result');
-    // let self = this,
-    //     initialColor = this.result.css('background');
-    // let colorPicker = $('#color-picker').spectrum({
-    //     chooseText: 'ok',
-    //     color: initialColor,
-    //     move: function(col) { self.onMove(col.rgb2hex()); },
-    //     change: function(col) { self.onChange(col.rgb2hex()); },
-    //     hide: function(col) {
-    //         self.onHide(col.toHexString());
-    //     },
-    //     onMove: function(color) {
-    //         this.result.css('background', color);
-    //     },
+    // Get HEX code from div
+    const result = colorPicker.value;
+    console.log(result);
 
-    //     onChange: function(color) {
-    //         this.result.css('background', color);
-    //         this.broadcast(color);
-    //     },
+    return result;
+}
 
-    //     onHide: function(color) {
-    //         this.result.css('background', color);
-    //         this.broadcast(color);
-    //     }
-    // });
-    // this.broadcast(colorPicker.spectrum('get').rgb2hex());
+// Function sendColorToResult
+function sendColorToResult(colorInput) {
+    console.log("Parse colorresult to DIV");
+
+    colorResultDIV.style.backgroundColor = colorInput;
+}
+
+// Function hexToRGB
+function hexToRGB(hex) {
+    hex = hex.substring(1);
+    let r = hex.substring(0, 2);
+    let g = hex.substring(2, 4);
+    let b = hex.substring(4, 6);
+    r = Number.parseInt(r, 16);
+    g = Number.parseInt(g, 16);
+    b = Number.parseInt(b, 16);
+    return { r, g, b };
 }
 
 function rgb2hex(color) {
@@ -57,8 +78,11 @@ function rgb2hex(color) {
     if (hexPart3.length == 1) {
         hexPart3 = ("0" + hexPart3);
     }
-    const hexColor = "#" + hexPart1 + hexPart2 + hexPart3;
-    console.log(hexColor);
+    const result = `#${hexPart1}${hexPart2}${hexPart3}`;
+    console.log(result);
+
+    return `#${hexPart1}${hexPart2}${hexPart3}`;
+
 }
 
 function rgbToHSL(r, g, b) {
@@ -99,6 +123,7 @@ function rgbToHSL(r, g, b) {
     l *= 100;
 
     console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
+    return ("hsl(%f,%f%,%f%)", h, s, l);
 }
 
 function cssToRGB(rgbFromCSS) {
@@ -121,8 +146,14 @@ function cssToRGB(rgbFromCSS) {
     const b = Number(parseInt(thirdNumber)).toString();
 
     // const rgbColorString = r + " " + g + " " + b;
-    console.log(rgbToHSL(r, g, b));
+    console.log(r, g, b);
+    return (r, g, b);
 }
+
+// Function Send HEX, RGB and HSL numbers to respective divs
+
+
+
 // console.log(cssToRGB("rgb(2, 14, 1)"));
 // console.log(cssToRGB("rgb(12, 213, 211)"));
 // console.log(cssToRGB("rgb(192, 1, 12)"));
