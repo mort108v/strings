@@ -8,8 +8,7 @@ function capitalized(str) {
     // const restOfName = nameToLower.substring(1);
     // const nameConcated = firstCapped + restOfName;
 
-    const result = str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
-    console.log(result);
+    return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
 }
 
 fullName("Potter", "Harry", "James");
@@ -17,6 +16,10 @@ fullName("Potter", "Harry", "James");
 let firstName = "moRten";
 let middleName = "bO";
 let lastName = "sixHoej";
+
+console.log(capitalized(firstName, middleName));
+console.log(capitalized(middleName));
+console.log(capitalized(lastName));
 
 function fullName(lastName, firstName, middleName) {
 
