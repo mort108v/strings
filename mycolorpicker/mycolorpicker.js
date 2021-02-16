@@ -1,7 +1,7 @@
 "use strict";
 
 const colorPicker = document.getElementById("color-picker");
-const colorResultDIV = document.getElementById("result");
+const colorResultDIV = document.getElementById("color-result");
 
 addEventListener("DOMContentLoaded", initColorPicker);
 
@@ -12,29 +12,38 @@ function initColorPicker() {
     colorPicker.addEventListener("change", () => {
         console.log("Color Changed");
 
-        fetchColor();
-        if (fetchColor(result) != colorResultDIV.value) {
-            sendColorToResult(fetchColor(result));
+        if (colorPicker.value != colorResultDIV.value) {
+            sendColorToResult(fetchColor());
+            fetchColorsAndParse();
         }
     })
-
-    // Init hexToRGB from colorresult
-    hexToRGB(fetchColor(result));
-
-    // init rgb to HSL
-    rgbToHSL(hexToRGB(r, g, b))
-        // Init Send HEX, RGB and HSL numbers to respective divs
 }
 
+function fetchColorsAndParse() {
+
+    // Fetch HEX COlor
+    const hex = fetchColor();
+    parseHEXToDiv(hex);
+    // Init hexToRGB from colorresult
+    const rgb = hexToRGB(hex);
+    parseRGBToDiv(rgb);
+    // init rgb to HSL
+    const hsl = rgbToHSL(rgb);
+    parseHSLToDiv(hsl);
+    // Init cssRGB from rgb
+    const css = rgbToCSS(rgb);
+    parseCSSToDiv(css);
+
+}
 
 function fetchColor() {
     console.log("Fetching Color from Selector");
 
     // Get HEX code from div
-    const result = colorPicker.value;
-    console.log(result);
+    const colorFromPicker = colorPicker.value;
+    console.log(colorFromPicker);
 
-    return result;
+    return colorFromPicker;
 }
 
 // Function sendColorToResult
@@ -46,6 +55,8 @@ function sendColorToResult(colorInput) {
 
 // Function hexToRGB
 function hexToRGB(hex) {
+    console.log("The HEX is " + hex);
+
     hex = hex.substring(1);
     let r = hex.substring(0, 2);
     let g = hex.substring(2, 4);
@@ -53,6 +64,7 @@ function hexToRGB(hex) {
     r = Number.parseInt(r, 16);
     g = Number.parseInt(g, 16);
     b = Number.parseInt(b, 16);
+
     return { r, g, b };
 }
 
@@ -85,7 +97,7 @@ function rgb2hex(color) {
 
 }
 
-function rgbToHSL(r, g, b) {
+function rgbToHSL({ r, g, b }) {
 
     r /= 255;
     g /= 255;
@@ -122,8 +134,13 @@ function rgbToHSL(r, g, b) {
     s *= 100;
     l *= 100;
 
+    h = Math.round(h);
+    s = Math.round(s);
+    l = Math.round(l);
+
     console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
-    return ("hsl(%f,%f%,%f%)", h, s, l);
+    // return ("hsl(%f,%f%,%f%)", h, s, l);
+    return { h, s, l };
 }
 
 function cssToRGB(rgbFromCSS) {
@@ -150,19 +167,24 @@ function cssToRGB(rgbFromCSS) {
     return (r, g, b);
 }
 
-// Function Send HEX, RGB and HSL numbers to respective divs
+function rgbToCSS({ r, g, b }) {
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
+// Functions Send HEX, RGB and HSL numbers to respective divs
+function parseCSSToDiv({ r, g, b }) {
+    document.querySelector(".css").textContent = `rgb(${r}, ${g}, ${b})`;
+}
 
+function parseHEXToDiv(hex) {
+    hex = hex.toUpperCase();
+    document.querySelector(".hex").textContent = `HEX: ${hex}`;
+}
 
-// console.log(cssToRGB("rgb(2, 14, 1)"));
-// console.log(cssToRGB("rgb(12, 213, 211)"));
-// console.log(cssToRGB("rgb(192, 1, 12)"));
+function parseRGBToDiv({ r, g, b }) {
+    document.querySelector(".rgb").textContent = `R: ${r} G: ${g} B: ${b}`;
+}
 
-
-// function cleanCSS(cssColor) {
-//     const parStart = cssColor.indexOf("(");
-//     const parEnd = cssColor.indexOf(")");
-//     const rgbColorString = cssColor.substring(parStart + 1, parEnd);
-//     console.log(rgbColorString);
-// }
-// console.log(cleanCSS("rgb(192, 13, 1)"));
+function parseHSLToDiv({ h, s, l }) {
+    document.querySelector(".hsl").textContent = `H: ${h} S: ${s}% L: ${l}%`;
+}
