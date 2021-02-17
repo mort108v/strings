@@ -167,11 +167,11 @@ function cssToRGB(rgbFromCSS) {
     return (r, g, b);
 }
 
-function rgbToCSS({ r, g, b }) {
-    return `rgb(${r}, ${g}, ${b})`;
-}
+// function rgbToCSS({ r, g, b }) {
+//     return `rgb(${r}, ${g}, ${b})`;
+// }
 
-// Functions Send HEX, RGB and HSL numbers to respective divs
+// Functions Send HEX, RGB, CSS and HSL numbers to respective divs
 function parseCSSToDiv({ r, g, b }) {
     document.querySelector(".css").textContent = `rgb(${r}, ${g}, ${b})`;
 }
