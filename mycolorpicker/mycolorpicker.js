@@ -1,5 +1,15 @@
 "use strict";
 
+console.log(`Peters Reminder 4 Signs:
+    `, `
+    ""X" - tekst der kommer ud på skærmen"
+    `, `
+    "[ ] - et array, eller noget af et array "
+    `, `
+    "( )- en funktion"
+    `, `
+    "{ }- et objekt"`);
+
 const colorPicker = document.getElementById("color-picker");
 const colorResultDIV = document.getElementById("color-result");
 
@@ -67,7 +77,7 @@ function hexToRGB(hex) {
 
     return { r, g, b };
 }
-
+// Function rgb2hex
 function rgb2hex(color) {
     const firstSpace = color.indexOf(" ");
     const lastSpace = color.lastIndexOf(" ");
@@ -96,7 +106,7 @@ function rgb2hex(color) {
     return `#${hexPart1}${hexPart2}${hexPart3}`;
 
 }
-
+// Function rgbToHSL
 function rgbToHSL({ r, g, b }) {
 
     r /= 255;
@@ -142,7 +152,7 @@ function rgbToHSL({ r, g, b }) {
     // return ("hsl(%f,%f%,%f%)", h, s, l);
     return { h, s, l };
 }
-
+// Function cssToRGB
 function cssToRGB(rgbFromCSS) {
     const parStart = rgbFromCSS.indexOf("(");
     const parEnd = rgbFromCSS.indexOf(")");
@@ -166,14 +176,14 @@ function cssToRGB(rgbFromCSS) {
     console.log(r, g, b);
     return (r, g, b);
 }
-
-// function rgbToCSS({ r, g, b }) {
-//     return `rgb(${r}, ${g}, ${b})`;
-// }
+// Function rgbToCSS
+function rgbToCSS({ r, g, b }) {
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
 // Functions Send HEX, RGB, CSS and HSL numbers to respective divs
-function parseCSSToDiv({ r, g, b }) {
-    document.querySelector(".css").textContent = `rgb(${r}, ${g}, ${b})`;
+function parseCSSToDiv(css) {
+    document.querySelector(".css").textContent = css;
 }
 
 function parseHEXToDiv(hex) {
