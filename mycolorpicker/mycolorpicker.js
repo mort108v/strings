@@ -46,6 +46,21 @@ function fetchColorsAndParse() {
 
 }
 
+// function for displaying 5 colors from the fetched one
+function create5colorsFromInitial() {
+    console.log("Creating New Color From initial");
+
+    // Make array or something of 5 colors from initial HEX
+
+}
+
+// Get the 5 divs to show them in
+function fiveRemainingColorDivs() {
+    console.log("Returning constants of DIV queries");
+
+
+}
+
 function fetchColor() {
     console.log("Fetching Color from Selector");
 
