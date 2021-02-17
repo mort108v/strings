@@ -19,7 +19,7 @@ function initColorPicker() {
     console.log("Colorpicker Startet");
 
     // Init Return color from picker
-    colorPicker.addEventListener("change", () => {
+    colorPicker.addEventListener("input", () => {
         console.log("Color Changed");
 
         if (colorPicker.value != colorResultDIV.value) {

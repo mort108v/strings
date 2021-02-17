@@ -6,9 +6,21 @@ body {
     text-align: center;
 }
 
+h1 {
+    color: whitesmoke;
+    font-size: 2em;
+    text-shadow: 0px 6px 6px #282828;
+}
+
+#color-picker {
+    margin: 10px;
+    width: 230px;
+    height: 40px;
+}
+
 .container {
     margin: 3em auto;
-    width: 20em;
+    width: 30em;
     align-content: center;
 }
 
@@ -24,8 +36,10 @@ body {
     box-shadow: 0 2px 6px #000;
     background: #95C066;
     display: inline-block;
-    padding: 60px;
-    margin: 10px;
+    width: 250px;
+    height: 250px;
+    padding: 0px;
+    margin: 0px;
 }
 
 .color-result0 {
@@ -108,7 +122,12 @@ body {
 }
 
 .zero-color span {
-    text-align: left;
-    font-weight: 700;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 800;
+    font-size: large;
+    line-height: 55px;
     color: whitesmoke;
+    -webkit-text-stroke: 1px #282828;
+    text-shadow: 0px 4px 4px #282828;
 }
