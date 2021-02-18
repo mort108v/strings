@@ -58,7 +58,7 @@ function create5colorsFromInitial() {
 }
 
 // Get the 5 divs to show them in
-function fiveRemainingColorDivs() {
+function fourRemainingColorDivs() {
     console.log("Returning constants of DIV queries");
 
     const colorResultDIV1 = document.getElementById("color-result0");
@@ -205,6 +205,52 @@ function cssToRGB(rgbFromCSS) {
 function rgbToCSS({ r, g, b }) {
     return `rgb(${r}, ${g}, ${b})`;
 }
+// Function HSL back to RGB
+function newHSLtoRGB {
+    console.log("New HSL back to RGB conversion");
+
+    h = h;
+    s = s / 100;
+    l = l / 100;
+
+    let c = (1 - Math.abs(2 * l - 1)) * s,
+        x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+        m = l - c / 2,
+        r = 0,
+        g = 0,
+        b = 0;
+    if (0 <= h && h < 60) {
+        r = c;
+        g = x;
+        b = 0;
+    } else if (60 <= h && h < 120) {
+        r = x;
+        g = c;
+        b = 0;
+    } else if (120 <= h && h < 180) {
+        r = 0;
+        g = c;
+        b = x;
+    } else if (180 <= h && h < 240) {
+        r = 0;
+        g = x;
+        b = c;
+    } else if (240 <= h && h < 300) {
+        r = x;
+        g = 0;
+        b = c;
+    } else if (300 <= h && h < 360) {
+        r = c;
+        g = 0;
+        b = x;
+    }
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
+
+    console.log(r, g, b);
+    return { r, g, b };
+}
 
 // Functions Send HEX, RGB, CSS and HSL numbers to respective divs
 function parseCSSToDiv(css) {
@@ -228,9 +274,9 @@ function parseHSLToDiv({ h, s, l }) {
 function randomBackgroundColor() {
     console.log("randomBackgroundColor");
 
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    const a = Math.floor(Math.random());
+    const rRandom = Math.floor(Math.random() * 256);
+    const gRandom = Math.floor(Math.random() * 256);
+    const bRandom = Math.floor(Math.random() * 256);
+    const aRandom = Math.ceiling(Math.random());
     return `rgb(${r},${g},${b}, ${a})`;
 }
