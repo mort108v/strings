@@ -105,7 +105,7 @@ function sortAnimals(sort, sortDirection) {
                     return a.name > b.name ? 1 : -1;
                 } else {
                     // Implicit descending
-                    return a.name < b.name ? -1 : 1;
+                    return a.name > b.name ? -1 : 1;
                 }
             });
             break;
