@@ -3,6 +3,9 @@
 window.addEventListener("DOMContentLoaded", start);
 
 let allAnimals = [];
+let filter;
+let filteredAnimals = [];
+let sortedAnimals = [];
 
 // The prototype for all animals: 
 const Animal = {
@@ -33,67 +36,129 @@ function start() {
 function clickFilterButton(filterButton) {
     console.log("filterClicked");
 
-    let filter = filterButton.target.dataset.filter;
+    filter = filterButton.target.dataset.filter;
+
+    const filteredAnimals = filterAnimals();
+    console.log(filteredAnimals);
+    displayList(filteredAnimals);
+}
+
+function filterAnimals() {
+    console.log("Filtering My Animals");
+
+    filteredAnimals = [];
 
     if (filter === "cat") {
-        allCats();
+        filteredAnimals = allAnimals.filter(isCat);
     } else if (filter === "dog") {
-        allDogs();
+        filteredAnimals = allAnimals.filter(isDog);
     } else if (filter === "dragon") {
-        allDragons();
-    } else if (filter === "*") {
-        allOfTheAnimals();
+        filteredAnimals = allAnimals.filter(isDragon);
+    } else {
+        filteredAnimals = allAnimals.filter(isAll);
     }
-    return filter;
+    return filteredAnimals;
 }
 
-function allCats() {
-    console.log("cats clicked");
-    displayList(allAnimals.filter(isCat));
-}
+// function allCats() {
+//     console.log("cats clicked");
+//     displayList(allAnimals.filter(isCat));
+// }
 
-function allDogs() {
-    console.log("dogs clicked");
-    displayList(allAnimals.filter(isDog));
-}
+// function allDogs() {
+//     console.log("dogs clicked");
+//     displayList(allAnimals.filter(isDog));
+// }
 
-function allDragons() {
-    console.log("Dragons clicked");
-    displayList(allAnimals.filter(isDragon));
-}
+// function allDragons() {
+//     console.log("Dragons clicked");
+//     displayList(allAnimals.filter(isDragon));
+// }
 
-function allOfTheAnimals() {
-    console.log("All clicked");
-    displayList(allAnimals.filter(isAll));
-}
+// function allOfTheAnimals() {
+//     console.log("All clicked");
+//     displayList(allAnimals.filter(isAll));
+// }
 
 function clickSortButton(sortButton) {
     console.log("Sorting Clicked");
 
-    let sorter = sortButton.target.dataset.sort;
+    const sort = sortButton.target.dataset.sort;
+    const sortDirection = sortButton.target.dataset.sortDirection;
 
-    if (sorter === "name", "type", "desc") {
-        console.log("Sort By ABC clicked");
-        sortAlphabetically(sorter);
+    console.log("Dataset", sortButton.target.dataset);
 
-    } else if (sorter === "age") {
-        console.log("age clicked");
-        sortByNumber(sorter);
-    }
+    const sortedAnimals = sortAnimals(sort, sortDirection);
+    sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc";
+    console.log("My Sorted Animal ", sortedAnimals);
+    displayList(sortedAnimals);
 }
 
-function sortAlphabetically(sortBy) {
-    console.log("Sorting the list");
+function sortAnimals(sort, sortDirection) {
+    console.log("Sorting the animal list", sort, filteredAnimals);
 
-    let filteredAnimals = clickFilterButton.filter;
-    if (filteredAnimals === "cat") {
-        displayList(isCat.sortBy).sort;
+    switch (sort) {
+        case "name":
+            sortedAnimals = filteredAnimals.sort((a, b) => {
+                if (sortDirection === "asc") {
+                    // Ascending
+                    return a.name > b.name ? 1 : -1;
+                } else {
+                    // Implicit descending
+                    return a.name < b.name ? -1 : 1;
+                }
+            });
+            break;
+        case "type":
+            sortedAnimals = filteredAnimals.sort((a, b) => {
+                if (sortDirection === "asc") {
+                    // Ascending
+                    return a.type > b.type ? 1 : -1;
+                } else {
+                    // Implicit descending
+                    return a.type > b.type ? -1 : 1;
+                }
+            });
+            break;
+        case "desc":
+            sortedAnimals = filteredAnimals.sort((a, b) => {
+                if (sortDirection === "asc") {
+                    // Ascending
+                    return a.desc > b.desc ? 1 : -1;
+                } else {
+                    // Implicit descending
+                    return a.desc > b.desc ? -1 : 1;
+                }
+            });
+            break;
+        case "age":
+            sortedAnimals = filteredAnimals.sort((a, b) => {
+                if (sortDirection === "asc") {
+                    // Ascending
+                    return a.age > b.age ? 1 : -1;
+                } else {
+                    // Implicit descending
+                    return a.age > b.age ? -1 : 1;
+                }
+            });
+            break;
+
+        default:
+            console.error("Unsupported Sorter", sort);
     }
-    // if (sortBy === "name", "type", "desc") {
-    //     console.log("Sorting Aplhabetically");
-    //     filteredAnimals(sortBy).sort;
+    return sortedAnimals;
 }
 
+function changeSortDirection(sortDirection) {
+    console.log("Switching the SortDiretion", sortDirection);
+    if (sortDirection === "asc") {
+        // Ascending
+        return a.desc > b.desc ? 1 : -1;
+    } else {
+        // Implicit descending
+        return a.desc > b.desc ? -1 : 1;
+    }
+}
 
 function isCat(animal) {
     console.log("isCat");
@@ -139,6 +204,8 @@ function prepareObjects(jsonData) {
     allAnimals = jsonData.map(preapareObject);
 
     // TODO: This might not be the function we want to call first
+    filteredAnimals = allAnimals;
+
     displayList(allAnimals);
 }
 
@@ -160,6 +227,7 @@ function displayList(animals) {
 
     // build a new list
     animals.forEach(displayAnimal);
+    console.log("DisplayList", animals);
 }
 
 function displayAnimal(animal) {
