@@ -22,7 +22,6 @@ function start() {
     console.log("ready");
 
     // Add event-listeners to filter and sort buttons
-
     filterButtons.forEach((filterButton) => {
         filterButton.addEventListener("click", clickFilterButton);
     });
@@ -60,26 +59,6 @@ function filterAnimals() {
     return filteredAnimals;
 }
 
-// function allCats() {
-//     console.log("cats clicked");
-//     displayList(allAnimals.filter(isCat));
-// }
-
-// function allDogs() {
-//     console.log("dogs clicked");
-//     displayList(allAnimals.filter(isDog));
-// }
-
-// function allDragons() {
-//     console.log("Dragons clicked");
-//     displayList(allAnimals.filter(isDragon));
-// }
-
-// function allOfTheAnimals() {
-//     console.log("All clicked");
-//     displayList(allAnimals.filter(isAll));
-// }
-
 function clickSortButton(sortButton) {
     console.log("Sorting Clicked");
 
@@ -91,6 +70,7 @@ function clickSortButton(sortButton) {
     const sortedAnimals = sortAnimals(sort, sortDirection);
     sortButton.target.dataset.sortDirection = sortDirection === "asc" ? "desc" : "asc";
     console.log("My Sorted Animal ", sortedAnimals);
+
     displayList(sortedAnimals);
 }
 
@@ -142,22 +122,10 @@ function sortAnimals(sort, sortDirection) {
                 }
             });
             break;
-
         default:
             console.error("Unsupported Sorter", sort);
     }
     return sortedAnimals;
-}
-
-function changeSortDirection(sortDirection) {
-    console.log("Switching the SortDiretion", sortDirection);
-    if (sortDirection === "asc") {
-        // Ascending
-        return a.desc > b.desc ? 1 : -1;
-    } else {
-        // Implicit descending
-        return a.desc > b.desc ? -1 : 1;
-    }
 }
 
 function isCat(animal) {
@@ -202,10 +170,7 @@ async function loadJSON() {
 
 function prepareObjects(jsonData) {
     allAnimals = jsonData.map(preapareObject);
-
-    // TODO: This might not be the function we want to call first
     filteredAnimals = allAnimals;
-
     displayList(allAnimals);
 }
 
