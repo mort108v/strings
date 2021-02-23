@@ -9,6 +9,8 @@ let sortedAnimals = [];
 
 // The prototype for all animals: 
 const Animal = {
+    winner: false,
+    star: false,
     name: "",
     desc: "-unknown animal-",
     type: "",
@@ -178,6 +180,7 @@ function preapareObject(jsonObject) {
     const animal = Object.create(Animal);
 
     const texts = jsonObject.fullname.split(" ");
+    animal.star = false;
     animal.name = texts[0];
     animal.desc = texts[2];
     animal.type = texts[3];
@@ -205,6 +208,74 @@ function displayAnimal(animal) {
     clone.querySelector("[data-field=type]").textContent = animal.type;
     clone.querySelector("[data-field=age]").textContent = animal.age;
 
+    if (animal.star) {
+        clone.querySelector("[data-field=star]").textContent = "⭐";
+    } else {
+        clone.querySelector("[data-field=star]").textContent = "✪";
+    }
+
+    if (animal.winner) {
+        clone.querySelector("[data-field=winner]").textContent = "🏆";
+    } else {
+        clone.querySelector("[data-field=winner]").textContent = "☂";
+    }
+
+    clone.querySelector("[data-field=star]").addEventListener("click", clickStar);
+    clone.querySelector("[data-field=winner]").addEventListener("click", clickWinner);
     // append clone to list
+    function clickStar() {
+        console.log("Star Clicked");
+        toggleStar(animal);
+    }
+
+    function clickWinner() {
+        console.log("Winner Clicked");
+        toggleWinner(animal);
+    }
+
     document.querySelector("#list tbody").appendChild(clone);
+}
+
+function toggleStar(animal) {
+    console.log("Star Toggle");
+
+    if (animal.star === true) {
+        animal.star = false;
+    } else {
+        animal.star = true;
+    }
+    displayList(filteredAnimals);
+}
+
+function toggleWinner(animal) {
+    console.log("winner Toggle");
+
+    if (animal.winner === true) {
+        animal.winner = false;
+    } else {
+        animal.winner = true;
+    }
+    displayList(filteredAnimals);
+}
+
+function getNumberOfWinners() {
+    console.log("Fetch number of winners");
+    // Find number of winners
+    const winners = 1; // TODO: Faked to 1 - replace with actual value!
+    return winners;
+}
+
+function hasWinnerOfSameType(animal) {
+    console.log("Is winner of same type?");
+    // if one of the winners has type === animal.type : return true
+}
+
+function clickWinner(animal) {
+    console.log("Winner is clicked");
+
+    if (hasWinnerOfSameType(animal)) {
+        // Then do what we have to do when there is a winner of this type!
+    } else if (getNumberOfWinners() >= 2) {
+        // Then do the other stuff ....
+    }
 }

@@ -1,5 +1,31 @@
 "use strict";
 
+function rgb2hex(color) {
+    const firstSpace = color.indexOf(" ");
+    const lastSpace = color.lastIndexOf(" ");
+
+    let r = color.substring(0, firstSpace);
+    //adds leading 0 to single-digit codes
+    let hexPart1 = Number(parseInt(r, 10)).toString(16);
+    if (hexPart1.length == 1) {
+        hexPart1 = ("0" + hexPart1);
+    }
+
+    let g = color.substring(firstSpace + 1, lastSpace);
+    let hexPart2 = Number(parseInt(g, 10)).toString(16);
+    if (hexPart2.length == 1) {
+        hexPart2 = ("0" + hexPart2);
+    }
+
+    let b = color.substring(lastSpace + 1);
+    let hexPart3 = Number(parseInt(b, 10)).toString(16);
+    if (hexPart3.length == 1) {
+        hexPart3 = ("0" + hexPart3);
+    }
+    const hexColor = "#" + hexPart1 + hexPart2 + hexPart3;
+    console.log(hexColor);
+}
+
 function rgbToHSL(r, g, b) {
 
     r /= 255;
@@ -39,7 +65,6 @@ function rgbToHSL(r, g, b) {
 
     console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
 }
-
 
 function cssToRGB(rgbFromCSS) {
     const parStart = rgbFromCSS.indexOf("(");
